@@ -8,6 +8,7 @@ fitur admin  :
 -CRUD outlet
 -CRUD paket
 -transaksi
+-generate laporan
 -logout
 
 fitur kasir  :
@@ -15,4 +16,12 @@ fitur kasir  :
 -dashboard
 -CRUD pelanggan
 -transaksi
+-generate laporan
 -logout
+
+fitur kasir  :
+-login
+-dashboard
+-generate laporan
+-logout
+
