@@ -1,7 +1,7 @@
 # my-project-school-4-month
 Tugas project 4 bulan
 
-fitur admin :
+fitur admin  :
 -login
 -dashboard
 -CRUD pelanggan
@@ -10,7 +10,7 @@ fitur admin :
 -transaksi
 -logout
 
-fitur kasir :
+fitur kasir  :
 -login
 -dashboard
 -CRUD pelanggan
