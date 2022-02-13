@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Feb 2022 pada 04.34
+-- Waktu pembuatan: 13 Feb 2022 pada 05.14
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 8.0.7
 
@@ -107,17 +107,20 @@ CREATE TABLE `tb_transaksi` (
   `id_transaksi` int(11) NOT NULL,
   `id_outlet` int(11) NOT NULL,
   `kode_invoice` varchar(100) NOT NULL,
-  `id_member` int(11) NOT NULL,
+  `id_pelanggan` int(11) NOT NULL,
   `tgl` datetime NOT NULL,
-  `batas_waktu` datetime NOT NULL,
-  `tgl_bayar` datetime NOT NULL,
-  `biaya_tambahan` int(11) NOT NULL,
-  `diskon` double NOT NULL,
-  `pajak` int(11) NOT NULL,
   `status` enum('baru','proses','selesai','diambil') NOT NULL,
   `dibayar` enum('dibayar','belum_dibayar') NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_transaksi`
+--
+
+INSERT INTO `tb_transaksi` (`id_transaksi`, `id_outlet`, `kode_invoice`, `id_pelanggan`, `tgl`, `status`, `dibayar`, `id_user`) VALUES
+(1, 1, '089695685756', 1, '2022-02-10 00:00:00', 'diambil', 'dibayar', 1),
+(2, 1, '21534654314', 1, '2022-02-13 00:00:00', 'baru', 'dibayar', 1);
 
 -- --------------------------------------------------------
 
@@ -179,7 +182,7 @@ ALTER TABLE `tb_pelanggan`
 --
 ALTER TABLE `tb_transaksi`
   ADD PRIMARY KEY (`id_transaksi`),
-  ADD KEY `id member ke id member` (`id_member`),
+  ADD KEY `id member ke id member` (`id_pelanggan`),
   ADD KEY `id otlet ke id otlet` (`id_outlet`),
   ADD KEY `id user ke id user` (`id_user`);
 
@@ -222,7 +225,7 @@ ALTER TABLE `tb_pelanggan`
 -- AUTO_INCREMENT untuk tabel `tb_transaksi`
 --
 ALTER TABLE `tb_transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_user`
@@ -251,7 +254,7 @@ ALTER TABLE `tb_paket`
 -- Ketidakleluasaan untuk tabel `tb_transaksi`
 --
 ALTER TABLE `tb_transaksi`
-  ADD CONSTRAINT `id member ke id member` FOREIGN KEY (`id_member`) REFERENCES `tb_pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `id member ke id member` FOREIGN KEY (`id_pelanggan`) REFERENCES `tb_pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `id otlet ke id otlet` FOREIGN KEY (`id_outlet`) REFERENCES `tb_outlet` (`id_outlet`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `id user ke id user` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
